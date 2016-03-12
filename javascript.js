@@ -19,7 +19,7 @@ angular.module('portalApp')
         // Model for the search and list example
         $scope.model = [{
             title: "item 1",
-            details: "item 1 details",
+            details: "<img src='http://animaliaz-life.com/data_images/dog/dog2.jpg'>",
             category: '1'
         }, {
             title: "item 2",
