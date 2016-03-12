@@ -57,6 +57,14 @@ angular.module('portalApp')
             $scope.portalHelpers.toggleLoading(false);
         }
     });
+    
+    // Handle click on an item in the list and search example
+    $scope.showDetails = function (item) {
+        // Set which item to show in the details view
+        $scope.item.value = item;
+        // Show details view in the second column
+        $scope.portalHelpers.showView('details.html', 2);
+    };
 	
 }])
 // Factory maintains the state of the widget
