@@ -1,17 +1,34 @@
 <script type="text/ng-template" id="main.html"> 
-  
-    <form>
-        <div class="form-group">
-            <label for="data">Sample Data options:</label>
-            <div class="checkbox" ng-repeat="fc in data.value">
-                <label>
-                    <input type="checkbox" ng-checked="fc.$$fav?true:false" ng-click="toggleFav(fc.title)" />
-                    <widget-icon name="{{fc.$$fav?'star':'star-empty'}}"></widget-icon> 
-                    {{fc.title}} 
-                </label>
-            </div>
-        </div>
-    </form>
-    <p>Click on each option to post data to service and save to the database.</p>
+        <widget-row>
+            <widget-cell>
+                <h1>Classifieds</h1>
+            </widget-cell>
+        </widget-row>
+
+		<widget-row>
+            <widget-cell>
+                <ul> 
+                    <li><a href="">Buy and Sell</a>  </li> 
+                    <li><a href=" ">Textbooks</a> </li> 
+                    
+                    <li><a href=" ">Lost and Found</a> </li> 
+                    <li><a href=" ">Housing</a></li> 
+                    <li><a href= " ">Tutoring</a></li>
+                    
+                    
+                    
+                </ul> 
+                
+                <button type="button">Post Ad</button>
+            </widget-cell>
+        </widget-row>
 </script>
 
+<!-- Menu template -->
+<script type="text/ng-template" id="widgetMenu.html">
+    <li>
+        <a>
+            Menu button
+        </a>
+    </li>
+</script>
