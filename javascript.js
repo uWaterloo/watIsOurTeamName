@@ -19,9 +19,9 @@ angular.module('portalApp')
         // Model for the search and list example
         $scope.model = [{
             title: "Fall 2016 Sublet",
-            details: "I wil sell you magic",
-            price: "$200",
-            category: '1'
+            details: "BRIDGEPORT HOUSE - 328 Regina St. - 10 min bus ride to UW or 5 min walk to King&University Fully furnished, private ensuite bathroom, all utilities included including high speed internet + air conditioning!",
+            price: "$495",
+            category: '3'
         }, {
             title: "item 2",
             details: "item 2 details",
