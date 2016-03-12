@@ -40,8 +40,12 @@ angular.module('portalApp')
         }, {
             title: "item 6",
             details: "item 6 details",
-            category: '2'
-        }];
+            category: '2'},
+           {
+            title: "item 7",
+            details: "item 7 details",
+            category: '3'
+        } ];
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
@@ -111,8 +115,6 @@ angular.module('portalApp')
                 });
                 $scope.insertValue.value = "";
             }
-        };        
-        $scope.insertDescription = function () {
             if ($scope.insertDescription.description.length > 50)
                 alert('description should be less than 500 characters');
             else {
@@ -122,8 +124,8 @@ angular.module('portalApp')
                     $scope.dbData.description = result;
                 });
                 $scope.insertDescription.description = "";
-            }
-        };  
+            }            
+        };        
     }])
     // Factory maintains the state of the widget
     .factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
