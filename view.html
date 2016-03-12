@@ -13,21 +13,28 @@
     <div class="collapseMe">
         <widget-row>
             <widget-cell>
-
+                
             </widget-cell>
         </widget-row>
-
-
-        <widget-search label="" placeholder="Search Classifieds" search-results-title="Search Results" data="model" min-char="2" fields="['title','details']">
-            <widget-filter>
-                <widget-row>
-                fields="['category']" filters="[{value:'1',text:'For Sale'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
-                </widget-row>
-                <widget-row>
-                    fields="['status']" filters="[{value:'1',text:'Buying'},{value:'0',text:'Selling'}]">
-                </widget-row>
-
+       
+        
+        <widget-search 
+             label="" 
+             placeholder="Search Classifieds" 
+             search-results-title="Search Results"
+             data="model" 
+             min-char="2" 
+             fields="['title','details']">
+            <widget-filter 
+                    fields="['category']" 
+                    filters="[{value:'1',text:'For Sale'},{value:'2',text:'Tutoring'}, 
+                             {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
             </widget-filter>
+            <widget-filter 
+                    fields="['status']" 
+                    filters="[{value:'1',text:'Buying'},{value:'0',text:'Selling'}]">
+            </widget-filter>
+            
 
             <widget-searching>
                 <widget-list list="item in searchResults" show-items="3">
@@ -57,11 +64,9 @@
             </widget-not-searching>
         </widget-search>
     </div>
-    <widget-row clickable ng-click="showPostAd(item)">
-        <center>
-            <button type="button">Post Ad</button>
-        </center>
-    </widget-row>
+	 <widget-row clickable ng-click="showPostAd(item)"> 
+        <center> <button type="button">Post Ad</button> </center> 
+     </widget-row>
 </script>
 
 <!-- Menu template -->
@@ -75,7 +80,8 @@
 
 <!-- VIEW FOR THE SEARCH AND LIST EXAMPLE -->
 <script type="text/ng-template" id="details.html">
-    <widget-list-controls prev-click="prevItem" next-click="nextItem" original-item="item.value" prev-text="Previous Item" next-text="Next Item"></widget-list-controls>
+    <widget-list-controls prev-click="prevItem" next-click="nextItem" original-item="item.value" prev-text="Previous Item"
+                          next-text="Next Item"></widget-list-controls>
     <widget-row>
         <widget-cell>
             <h2>{{item.value.title}}</h2>
