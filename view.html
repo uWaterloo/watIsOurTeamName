@@ -78,7 +78,7 @@
             </widget-not-searching>
         </widget-search>
     </div>
-	 <widget-row clickable ng-click="showDetails(item)"> 
+	 <widget-row clickable ng-click="showPostAd(item)"> 
         <center> <button type="button">Post Ad</button> </center> 
      </widget-row>
 </script>
@@ -110,4 +110,14 @@
 
 <!-- Ad Details -->
 <script type="text/ng-template" id="adDetails.html">
+    <widget-row>
+        <widget-cell>
+            <h2>{{item.value.title}}</h2>
+        </widget-cell>
+    </widget-row>
+    <widget-row>
+        <widget-cell>
+            <div class="pHighlight">{{item.value.details}}</div>
+        </widget-cell>
+    </widget-row>    
 </script>
