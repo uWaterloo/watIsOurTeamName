@@ -43,6 +43,20 @@ angular.module('portalApp')
 
 	// Show main view in the first column
 	$scope.portalHelpers.showView('main.html', 1);
+    
+    // watch for changes in the loading variable
+    $scope.$watch('loading.value', function () {
+        // if loading
+        if ($scope.loading.value) {
+            // show loading screen in the first column, and don't append it to browser history
+            $scope.portalHelpers.showView('loading.html', 1, false);
+            // show loading animation in place of menu button
+            $scope.portalHelpers.toggleLoading(true);
+        } else {
+            $scope.portalHelpers.showView('main.html', 1);
+            $scope.portalHelpers.toggleLoading(false);
+        }
+    });
 	
 }])
 // Factory maintains the state of the widget
