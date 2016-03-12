@@ -101,16 +101,17 @@ angular.module('portalApp')
         }
         // Handle form submit in the database test example
         $scope.insertData = function () {
-            if ($scope.insertValue.value.length > 50)
-                alert('value should be less than 50 characters');
-            else {
-                $scope.portalHelpers.invokeServerFunction('insert', {
-                    value: $scope.insertValue.value
-                }).then(function (result) {
-                    $scope.dbData.value = result;
-                });
-                $scope.insertValue.value = "";
-            }
+            // if ($scope.insertValue.value.length > 50)
+            //     alert('value should be less than 50 characters');
+            // else {
+            //     $scope.portalHelpers.invokeServerFunction('insert', {
+            //         value: $scope.insertValue.value
+            //     }).then(function (result) {
+            //         $scope.dbData.value = result;
+            //     });
+            //     $scope.insertValue.value = "";
+            // }
+            console.log($scope.insertDescription);
             if ($scope.insertDescription.description.length > 50)
                 alert('description should be less than 500 characters');
             else {
