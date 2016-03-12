@@ -12,35 +12,47 @@ angular.module('portalApp')
         // Import variables and functions from service
         $scope.loading = watIsOurTeamNameFactory.loading;
     	$scope.insertValue = watIsOurTeamNameFactory.insertValue;
+        $scope.insertDescription = watIsOurTeamNameFactory.insertDescription;
     	$scope.item = {value:''};
     	$scope.dbData = watIsOurTeamNameFactory.dbData;
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
-            title: "item 100000000000",
-            details: "item 1 details",
+            title: "Fall 2016 Sublet",
+            details: "BRIDGEPORT HOUSE - 328 Regina St. - 10 min bus ride to UW or 5 min walk to King&University Fully furnished, private ensuite bathroom, all utilities included including high speed internet + air conditioning!",
+            price: "$495",
+            category: '3'
+        }, {
+            title: "Math 135 Textbook For Sale!",
+            details: "I am selling my Math 135 course notes. Good condition",
+             price: "$10",
             category: '1'
         }, {
-            title: "item 2",
-            details: "item 2 details",
-            category: '2'
-        }, {
-            title: "item 3",
-            details: "item 3 details",
+            title: "'96 Infiniti I30 237000km",
+            details: "Car is currently driving daily. Just passed emission test last November and replaced a new exhaust pipe last year. No issue with engine at all. 4 season tires + aluminum rims 237000km",
+            price: "$680",
             category: '1'
         }, {
-            title: "item 4",
-            details: "item 4 details",
+            title: "Looking for a Physics Tutor",
+            details: "I am looking for a physics tutor for phys 112. Willing to pay $20 per hour.",
+             price: "$20",
             category: '2'
         }, {
-            title: "item 5",
-            details: "item 5 details",
-            category: '1'
+            title: "Found Lost WatCard",
+            details: "Found Lost Watcard. Name is John Smith.",
+             price: "FREE",
+            category: '4'
         }, {
-            title: "item 6",
-            details: "item 6 details",
-            category: '2'
-        }];
+            title: "Selling Size 10 Nike Shoes",
+            details: "I am selling my Nike Shoes. Size 10.",
+             price: "$20",
+            category: '1'},
+           {
+            title: "Looking for Female Roommate for Winter 2015",
+            details: "Looking for a Female roommate for Winter 2015",
+                price: "N/A",
+            category: '3'
+        } ];
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
@@ -84,13 +96,43 @@ angular.module('portalApp')
         }
         // Post Ad stuff
         $scope.showPostAd = function(item) {
-            // Set which item to show in the showAddetails view
+            // Set which item to show in the showAdDetails view
             $scope.item.value = item;
+            $scope.item.description = item;
             // Show details view in the second column
             $scope.portalHelpers.showView('adDetails.html', 2);
         };
-        
-
+        //Create Table
+        $scope.createTable = function () {
+            $scope.portalHelpers.invokeServerFunction('createTable').then(function (
+                result) {
+                $scope.dbData.value = [];
+                $scope.dbData.description = [];                
+            });
+        }
+        // Handle form submit in the database test example
+        $scope.insertData = function () {
+            if ($scope.insertValue.value.length > 50)
+                alert('value should be less than 50 characters');
+            else {
+                $scope.portalHelpers.invokeServerFunction('insert', {
+                    value: $scope.insertValue.value
+                }).then(function (result) {
+                    $scope.dbData.value = result;
+                });
+                $scope.insertValue.value = "";
+            }
+            if ($scope.insertDescription.description.length > 50)
+                alert('description should be less than 500 characters');
+            else {
+                $scope.portalHelpers.invokeServerFunction('insert', {
+                    description: $scope.insertDescription.description
+                }).then(function (result) {
+                    $scope.dbData.description = result;
+                });
+                $scope.insertDescription.description = "";
+            }            
+        };        
     }])
     // Factory maintains the state of the widget
     .factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
@@ -108,7 +150,15 @@ angular.module('portalApp')
         var data = {
             value: null
         };
-
+        var dbData = {
+            value: null
+        };
+        var insertValue = {
+            value: null
+        };      
+        var insertDescription = {
+            value: null
+        };       
         var init = function($scope) {
             if (initialized.value)
                 return;
@@ -116,6 +166,10 @@ angular.module('portalApp')
             initialized.value = true;
 
             // Place your init code here:
+            $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
+                dbData.value = result;
+                dbData.description = result;
+            });
             data.value = {
                 message: "Welcome to Waterloo's Classified Page"
             };
@@ -133,7 +187,10 @@ angular.module('portalApp')
         return {
             init: init,
             data: data,
-            loading: loading
+            loading: loading,
+            insertValue: insertValue,
+            insertDescription: insertDescription,
+            dbData: dbData            
         };
 
     }])
