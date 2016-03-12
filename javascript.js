@@ -214,3 +214,28 @@ angular.module('portalApp')
             return output;
         }
     });
+	alert(1){
+        var label, textbox;
+        label = document.createElement('label');
+        label.appendChild(document.createTextNode('Item name: '));
+        textbox = document.createElement('input');
+        textbox.type = 'text';
+        label.appendChild(textbox);
+        document.getElementById('adDetails.html').appendChild(label);
+    }
+	alert(2){
+        var label, textbox;
+        label = document.createElement('label');
+        label.appendChild(document.createTextNode('Course(s): '));
+        textbox = document.createElement('input');
+        textbox.type = 'text';
+        label.appendChild(textbox);
+        document.getElementById('adDetails.html').appendChild(label);
+    }
+	
+    var radios = document.forms["formA"].elements["myradio"];
+      for(radio in radios) {
+        radio.onclick = function() {
+            alert(radio.value);
+        }
+    }
