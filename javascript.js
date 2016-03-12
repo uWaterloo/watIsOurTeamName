@@ -11,6 +11,32 @@ angular.module('portalApp')
 
     // Import variables and functions from service
     $scope.data = watIsOurTeamNameFactory.data;
+    // Model for the search and list example
+    $scope.model = [{
+        title: "item 1",
+        details: "item 1 details",
+        category: '1'
+    }, {
+        title: "item 2",
+        details: "item 2 details",
+        category: '2'
+    }, {
+        title: "item 3",
+        details: "item 3 details",
+        category: '1'
+    }, {
+        title: "item 4",
+        details: "item 4 details",
+        category: '2'
+    }, {
+        title: "item 5",
+        details: "item 5 details",
+        category: '1'
+    }, {
+        title: "item 6",
+        details: "item 6 details",
+        category: '2'
+    }];
 
     // initialize the service
     watIsOurTeamNameFactory.init($scope);
