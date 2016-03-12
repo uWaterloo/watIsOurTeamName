@@ -52,7 +52,9 @@ angular.module('portalApp')
             details: "Looking for a Female roommate for Winter 2015",
                 price: "N/A",
             category: '3'
-        } ];
+        }
+                       
+                  ];
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
