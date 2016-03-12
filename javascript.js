@@ -12,6 +12,7 @@ angular.module('portalApp')
         // Import variables and functions from service
         $scope.loading = watIsOurTeamNameFactory.loading;
     	$scope.item = {value:''};
+        $scope.dbData = sampleDatabaseAccessFactory.dbData;
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
@@ -87,7 +88,26 @@ angular.module('portalApp')
             // Show details view in the second column
             $scope.portalHelpers.showView('adDetails.html', 2);
         };
-        
+    	//Database Table
+        $scope.createTable = function () {
+            $scope.portalHelpers.invokeServerFunction('createTable').then(function (
+                result) {
+                $scope.dbData.value = [];
+            });
+        }
+        // Handles form submissions, maybe
+        $scope.insertData = function () {
+            if ($scope.insertValue.value.length > 50)
+                alert('value should be less than 50 characters');
+            else {
+                $scope.portalHelpers.invokeServerFunction('insert', {
+                    value: $scope.insertValue.value
+                }).then(function (result) {
+                    $scope.dbData.value = result;
+                });
+                $scope.insertValue.value = "";
+            }
+        };        
 
     }])
     // Factory maintains the state of the widget
@@ -102,11 +122,16 @@ angular.module('portalApp')
         };
         var sourcesLoaded = 0;
 
-        // Your variable declarations
         var data = {
             value: null
         };
+        var insertValue = {
+            value: null
+        };
 
+        var dbData = {
+            value: null
+        };
         var init = function($scope) {
             if (initialized.value)
                 return;
@@ -114,6 +139,9 @@ angular.module('portalApp')
             initialized.value = true;
 
             // Place your init code here:
+            $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
+                dbData.value = result;
+            });             
             data.value = {
                 message: "Welcome to Waterloo's Classified Page"
             };
@@ -131,7 +159,9 @@ angular.module('portalApp')
         return {
             init: init,
             data: data,
-            loading: loading
+            loading: loading,
+            insertValue: insertValue,
+            dbData: dbData
         };
 
     }])
