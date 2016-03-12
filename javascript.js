@@ -14,6 +14,7 @@ angular.module('portalApp')
     	$scope.insertValue = watIsOurTeamNameFactory.insertValue;
         $scope.insertDescription = watIsOurTeamNameFactory.insertDescription;
     	$scope.item = {value:''};
+    	
     	$scope.dbData = watIsOurTeamNameFactory.dbData;
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
