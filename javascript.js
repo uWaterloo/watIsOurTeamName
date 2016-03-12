@@ -215,3 +215,4 @@ angular.module('portalApp')
             return output;
         }
     });
+
