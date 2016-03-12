@@ -28,6 +28,8 @@ function createTable() {
 
 // Insert into the database
 function insert() {
+    //console.log(args.Get("value"));
+    console.log(args.Get("description"));
     if (args.Get("value").length > 50)
         return '{"result":"error"}';
     else {
@@ -37,7 +39,7 @@ function insert() {
     if (args.Get("description").length > 500)
         return '{"result":"error"}';
     else {
-        db.Execute('INSERT INTO sampleTable VALUES(@currentUser,@description)');
+        db.Execute('INSERT INTO sampleTable (userId, description) VALUES(@currentUser,@description)');
         return getData();
     }    
 } 
