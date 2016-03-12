@@ -19,20 +19,10 @@
        
         <div class="category"> 
             <widget-row> 
-                <ul> 
-                    <li><a href=" ">Buy and Sell</a></li> 
-                    
-                    
-                    <li><a href=" ">Tutoring</a></li> 
-                    
-                    
-                     <li><a href=" ">Housing</a></li> 
-                    
-                     <li><a href=" ">Lost and Found</a></li> 
-                    
-                    
-                    
-                </ul>
+                 <widget-filter 
+                    fields="['category']" 
+                    filters="[{value:'1',text:'Buy and Sell'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
+            </widget-filter>
                 
                 
             </widget-row>
