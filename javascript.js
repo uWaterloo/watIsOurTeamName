@@ -12,6 +12,7 @@ angular.module('portalApp')
         // Import variables and functions from service
         $scope.loading = watIsOurTeamNameFactory.loading;
     	$scope.insertValue = watIsOurTeamNameFactory.insertValue;
+        $scope.insertDescription = watIsOurTeamNameFactory.insertDescription;
     	$scope.item = {value:''};
     	$scope.dbData = watIsOurTeamNameFactory.dbData;
         // $scope.data = watIsOurTeamNameFactory.data;
@@ -84,8 +85,9 @@ angular.module('portalApp')
         }
         // Post Ad stuff
         $scope.showPostAd = function(item) {
-            // Set which item to show in the showAddetails view
+            // Set which item to show in the showAdDetails view
             $scope.item.value = item;
+            $scope.item.description = item;
             // Show details view in the second column
             $scope.portalHelpers.showView('adDetails.html', 2);
         };
@@ -94,6 +96,7 @@ angular.module('portalApp')
             $scope.portalHelpers.invokeServerFunction('createTable').then(function (
                 result) {
                 $scope.dbData.value = [];
+                $scope.dbData.description = [];                
             });
         }
         // Handle form submit in the database test example
@@ -109,7 +112,18 @@ angular.module('portalApp')
                 $scope.insertValue.value = "";
             }
         };        
-
+        $scope.insertDescription = function () {
+            if ($scope.insertDescription.description.length > 50)
+                alert('description should be less than 500 characters');
+            else {
+                $scope.portalHelpers.invokeServerFunction('insert', {
+                    description: $scope.insertDescription.description
+                }).then(function (result) {
+                    $scope.dbData.description = result;
+                });
+                $scope.insertDescription.description = "";
+            }
+        };  
     }])
     // Factory maintains the state of the widget
     .factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
@@ -132,7 +146,10 @@ angular.module('portalApp')
         };
         var insertValue = {
             value: null
-        };        
+        };      
+        var insertDescription = {
+            value: null
+        };       
         var init = function($scope) {
             if (initialized.value)
                 return;
@@ -142,6 +159,7 @@ angular.module('portalApp')
             // Place your init code here:
             $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
                 dbData.value = result;
+                dbData.description = result;
             });
             data.value = {
                 message: "Welcome to Waterloo's Classified Page"
@@ -162,6 +180,7 @@ angular.module('portalApp')
             data: data,
             loading: loading,
             insertValue: insertValue,
+            insertDescription: insertDescription,
             dbData: dbData            
         };
 
