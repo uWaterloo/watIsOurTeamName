@@ -112,16 +112,12 @@ angular.module('portalApp')
                 $scope.insertValue.value = "";
             }
             console.log($scope.insertDescription);
-            if ($scope.insertDescription.description.length > 500)
-                alert('description should be less than 500 characters');
-            else {
                 $scope.portalHelpers.invokeServerFunction('insert', {
                     description: $scope.insertDescription.description
                 }).then(function (result) {
                     $scope.dbData.description = result;
                 });
                 $scope.insertDescription.description = "";
-            }            
         };        
     }])
     // Factory maintains the state of the widget
