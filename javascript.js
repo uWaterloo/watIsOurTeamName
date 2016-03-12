@@ -86,11 +86,7 @@ sampleSimpleListFactory) {
             value: false
         };
 
-        // Your variable declarations
-        var loading = {
-            value: true
-        };
-
+      
         var sourcesLoaded = 0;
 
         var init = function ($scope) {
