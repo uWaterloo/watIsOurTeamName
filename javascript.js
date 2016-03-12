@@ -103,20 +103,13 @@ angular.module('portalApp')
         $scope.insertData = function () {
             //title
             $scope.portalHelpers.invokeServerFunction('insert', {
-                value: $scope.insertValue.value
-            }).then(function (result) {
-                $scope.dbData.value = result;
-            });
-            $scope.insertValue.value = "";
-          	//description
-            $scope.portalHelpers.invokeServerFunction('insert', {
+                value: $scope.insertValue.value, 
                 description: $scope.insertDescription.description
             }).then(function (result) {
+                $scope.dbData.value = result;
                 $scope.dbData.description = result;
             });
-            $scope.insertDescription.description = "";
-        };        
-    }])
+    	}])
     // Factory maintains the state of the widget
     .factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
 
@@ -140,7 +133,7 @@ angular.module('portalApp')
             value: null
         };      
         var insertDescription = {
-            value: null
+            description: null
         };       
         var init = function($scope) {
             if (initialized.value)
