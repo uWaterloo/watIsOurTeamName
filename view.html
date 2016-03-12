@@ -129,6 +129,7 @@
         <div ng-if="!dbData.value.status">
             <widget-row>
                 <widget-cell>
+                    {{insertStatus}}
                     <form class="form-inline" ng-submit="insertData()">
                         <div class="input-group" style="width: 100%;">
                             <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter Title" />
