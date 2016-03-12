@@ -40,4 +40,4 @@ function insert() {
         db.Execute('INSERT INTO sampleTable VALUES(@currentUser, @description)');
         return getData();
     }    
-} 
+}
