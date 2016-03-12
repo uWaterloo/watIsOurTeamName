@@ -27,8 +27,13 @@
              fields="['title','details']">
             <widget-filter 
                     fields="['category']" 
-                    filters="[{value:'1',text:'Buy and Sell'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
+                    filters="[{value:'1',text:'For Sale'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
             </widget-filter>
+            <widget-filter 
+                    fields="['type']" 
+                    filters="[{value:'1',text:'Buying'},{value:'2',text:'Selling'}]">
+            </widget-filter>
+            
 
             <widget-searching>
                 <widget-list list="item in searchResults" show-items="3">
