@@ -21,40 +21,47 @@ angular.module('portalApp')
             title: "Fall 2016 Sublet",
             details: "BRIDGEPORT HOUSE - 328 Regina St. - 10 min bus ride to UW or 5 min walk to King&University Fully furnished, private ensuite bathroom, all utilities included including high speed internet + air conditioning!",
             price: "$495",
-            category: '3'
+            category: '3',
+            status: '1'
         }, {
             title: "Math 135 Textbook For Sale!",
             details: "I am selling my Math 135 course notes. Good condition",
              price: "$10",
-            category: '1'
+            category: '1',
+            status: '1'
         }, {
             title: "'96 Infiniti I30 237000km",
             details: "Car is currently driving daily. Just passed emission test last November and replaced a new exhaust pipe last year. No issue with engine at all. 4 season tires + aluminum rims 237000km",
             price: "$680",
-            category: '1'
+            category: '1',
+            status: '1'
         }, {
             title: "Looking for a Physics Tutor",
             details: "I am looking for a physics tutor for phys 112. Willing to pay $20 per hour.",
-             price: "$20",
-            category: '2'
+            price: "$20",
+            category: '2',
+            status: '0'
         }, {
             title: "Found Lost WatCard",
             details: "Found Lost Watcard. Name is John Smith.",
              price: "FREE",
-            category: '4'
+            category: '4',
+            status: '1'
         }, {
             title: "Selling Size 10 Nike Shoes",
             details: "I am selling my Nike Shoes. Size 10.",
              price: "$20",
             category: '1'},
+            status: '1'
            {
             title: "Looking for Female Roommate for Winter 2015",
             details: "Looking for a Female roommate for Winter 2015",
-                price: "N/A",
-            category: '3'
+            price: "N/A",
+            category: '3',
+            status: '0'
         }
                        
-                  ];
+        ];
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
