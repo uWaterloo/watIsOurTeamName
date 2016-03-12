@@ -52,7 +52,9 @@ angular.module('portalApp')
             details: "Looking for a Female roommate for Winter 2015",
                 price: "N/A",
             category: '3'
-        } ];
+        }
+                       
+                  ];
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
@@ -122,6 +124,8 @@ angular.module('portalApp')
                 });
                 $scope.insertValue.value = "";
             }
+        };        
+        $scope.insertDescription = function () {
             if ($scope.insertDescription.description.length > 50)
                 alert('description should be less than 500 characters');
             else {
@@ -131,8 +135,8 @@ angular.module('portalApp')
                     $scope.dbData.description = result;
                 });
                 $scope.insertDescription.description = "";
-            }            
-        };        
+            }
+        };  
     }])
     // Factory maintains the state of the widget
     .factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
