@@ -127,7 +127,12 @@ angular.module('portalApp')
         var data = {
             value: null
         };
-
+        var dbData = {
+            value: null
+        };
+        var insertValue = {
+            value: null
+        };        
         var init = function($scope) {
             if (initialized.value)
                 return;
