@@ -1,2 +1,2 @@
 # watIsOurTeamName
-A buy and sell group for waterloo students.
+A classifieds widget for students to advertise all the things.
