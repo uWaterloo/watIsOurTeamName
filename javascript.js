@@ -96,6 +96,19 @@ angular.module('portalApp')
                 $scope.dbData.value = [];
             });
         }
+        // Handle form submit in the database test example
+        $scope.insertData = function () {
+            if ($scope.insertValue.value.length > 50)
+                alert('value should be less than 50 characters');
+            else {
+                $scope.portalHelpers.invokeServerFunction('insert', {
+                    value: $scope.insertValue.value
+                }).then(function (result) {
+                    $scope.dbData.value = result;
+                });
+                $scope.insertValue.value = "";
+            }
+        };        
 
     }])
     // Factory maintains the state of the widget
