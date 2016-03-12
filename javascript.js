@@ -198,12 +198,12 @@ angular.module('portalApp')
             $scope.portalHelpers.invokeServerFunction('getData').then(function(result) {
                 dbData.value = result;
                 dbData.description = result;
-				insertContact.contact = result;
-				insertForSale.forSale = result;
-				insertTutoring.tutoring = result;
-				insertHousing.housing = result;
-				insertLostFound.lostFound = result;
-				insertStatus.status = result;
+				dbData.contact = result;
+				dbData.forSale = result;
+				dbData.tutoring = result;
+				dbData.housing = result;
+				dbData.lostFound = result;
+				dbData.status = result;
             });
             data.value = {
                 message: "Welcome to Waterloo's Classified Page"
