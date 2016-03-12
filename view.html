@@ -16,7 +16,7 @@
                 
             </widget-cell>
         </widget-row>
-       
+      
         <widget-search 
              label="" 
              placeholder="Search Classifieds" 
@@ -32,7 +32,7 @@
             <widget-searching>
                 <widget-list list="item in searchResults" show-items="3">
                     <widget-row clickable ng-click="showDetails(item)">
-                        <widget-cell fill>{{item.title}}</widget-cell>
+                        <widget-cell fill>{{item.value}}</widget-cell>
                         <widget-cell>
                             <widget-icon name="angle-right"></widget-icon>
                         </widget-cell>
@@ -48,7 +48,7 @@
                 </widget-row>
                 <widget-list list="item in model" show-items="5">
                     <widget-row clickable ng-click="showDetails(item)">
-                        <widget-cell fill>{{item.title}}</widget-cell>
+                        <widget-cell fill>{{item.value}}</widget-cell>
                         <widget-cell>
                             <widget-icon name="angle-right"></widget-icon>
                         </widget-cell>
@@ -78,7 +78,6 @@
     <widget-row>
         <widget-cell>
             <h2>{{item.value.title}}</h2>
-            <h4>{{item.value.price}}</h4>
         </widget-cell>
     </widget-row>
     <widget-row>
@@ -113,7 +112,7 @@
                         <div class="input-group" style="width: 100%;">
                             <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter Title" />
                             <input type="text" class="form-control" ng-model="insertDescription.description" placeholder="Enter Description" />
-                            <input type="text" class="form-control" ng-model="insertContact.contact" placeholder="Enter Contact Info" />    
+                            <input type="text" class="form-control" ng-model="insertContact.contact" placeholder="Enter Contact Info" />
                             <input type="integer" class="form-control" ng-model="insertCategory.category" placeholder="1 to 4" />
                             <input type="integer" class="form-control" ng-model="insertStatus.status" placeholder="Enter 1 or 0" />
             				<span class="input-group-btn" style="overflow:hidden;">
@@ -123,29 +122,6 @@
                     </form>
                 </widget-cell>               
             </widget-row>
-             <p>
-        <widget-row>
-            <widget-cell>
-               Description:
-            </widget-cell>
-        </widget-row>
-        <textarea cols="40" rows="8">
-		Enter text here...
-		</textarea>
-        <widget-row>
-        	<widget-cell>
-       			Contact Email:
-        	</widget-cell>
-        </widget-row>
-        <textarea cols="40" rows="1">
-		Enter contact email (optional)
-		</textarea>
-           <widget-row>  
-               	   <button 
-                       type="button">Submit
-                   </button>
-           </widget-row>
-        </p>
 <!--             <widget-row>
                 <widget-cell>
                     <form class="form-inline" ng-submit="insertData()">
