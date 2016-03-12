@@ -30,7 +30,6 @@ function createTable() {
 function insert() {
     console.log(args.Get("value"));
     console.log(args.Get("description"));
-        db.Execute('INSERT INTO sampleTable (userId, value, description) VALUES(@currentUser,@value,@description)');
-        return getData();
-    }       
+    db.Execute('INSERT INTO sampleTable (userId, value, description) VALUES(@currentUser,@value,@description)');
+    return getData();     
 } 
