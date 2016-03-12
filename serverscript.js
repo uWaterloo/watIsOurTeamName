@@ -28,6 +28,8 @@ function createTable() {
 
 // Insert into the database
 function insert() {
+    console.log(args.Get("value"));
+    console.log(args.Get("description"));
     if (args.Get("value").length > 50)
         return '{"result":"error"}';
     else {
