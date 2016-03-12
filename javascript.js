@@ -80,6 +80,14 @@ angular.module('portalApp')
             var nextItem = $scope.portalHelpers.getNextListItem();
             $scope.showDetails(nextItem);
         }
+        // Post Ad stuff
+        $scope.showPostAd = function(item) {
+            // Set which item to show in the showAdDetails view
+            $scope.item.value = item;
+            // Show details view in the second column
+            $scope.portalHelpers.showView('adDetails.html', 2);
+        };
+        
 
     }])
     // Factory maintains the state of the widget
