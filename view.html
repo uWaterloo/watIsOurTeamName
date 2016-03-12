@@ -13,10 +13,31 @@
     <div class="collapseMe">
         <widget-row>
             <widget-cell>
-                <h2>Classifieds</h2>
+                <!--<h2>Classifieds</h2>-->
             </widget-cell>
         </widget-row>
        
+        <div class="category"> 
+            <widget-row> 
+                <ul> 
+                    <li><a href=" ">Buy and Sell</a></li> 
+                    
+                    
+                    <li><a href=" ">Tutoring</a></li> 
+                    
+                    
+                     <li><a href=" ">Housing</a></li> 
+                    
+                     <li><a href=" ">Lost and Found</a></li> 
+                    
+                    
+                    
+                </ul>
+                
+                
+            </widget-row>
+            
+        </div> 
         <widget-search 
              label="" 
              placeholder="Search Classifieds" 
@@ -26,7 +47,7 @@
              fields="['title','details']">
             <widget-filter 
                     fields="['category']" 
-                    filters="[{value:'1',text:'Buy and Sell'},{value:'2',text:'Services'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
+                    filters="[{value:'1',text:'Buy and Sell'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
             </widget-filter>
 
             <widget-searching>
