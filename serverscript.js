@@ -18,7 +18,8 @@ function createTable() {
     var row = JSON.parse(queryResult);
 
     if (row.length > 0 && typeof row[0].Error != 'undefined') {
-        db.Execute('CREATE TABLE sampleTable(id INTEGER PRIMARY KEY IDENTITY(1,1), userId nvarchar(50), value nvarchar(50), description nvarchar(500));');
+        db.Execute('CREATE TABLE sampleTable(id INTEGER PRIMARY KEY IDENTITY(1,1), userId nvarchar(50), value nvarchar(50), description nvarchar(500), contact nvarchar(200), forSale integer, tutoring integer, housing integer, lostFound integer, status);'); 
+        //status 1 = buy, 0 = sell;
         result = '{"status":"tableCreated"}';
     } else
         result = '{"status":"tableExist"}';
@@ -28,8 +29,6 @@ function createTable() {
 
 // Insert into the database
 function insert() {
-    console.log(args.Get("value"));
-    console.log(args.Get("description"));
-    db.Execute('INSERT INTO sampleTable (userId, value, description) VALUES(@currentUser,@value,@description)');
+    db.Execute('INSERT INTO sampleTable (userId, value, description, contact, forSale, tutoring, housing, lostFound, status) VALUES(@currentUser,@value,@description,@contact,@forSale,@tutoring,@housing,@lostFound,@status)');
     return getData();     
 } 
