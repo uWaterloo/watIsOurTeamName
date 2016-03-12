@@ -89,7 +89,13 @@ angular.module('portalApp')
             // Show details view in the second column
             $scope.portalHelpers.showView('adDetails.html', 2);
         };
-        
+        //Create Table
+        $scope.createTable = function () {
+            $scope.portalHelpers.invokeServerFunction('createTable').then(function (
+                result) {
+                $scope.dbData.value = [];
+            });
+        }
 
     }])
     // Factory maintains the state of the widget
