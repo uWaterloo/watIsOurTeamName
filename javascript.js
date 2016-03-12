@@ -11,11 +11,13 @@ angular.module('portalApp')
 
         // Import variables and functions from service
         $scope.loading = watIsOurTeamNameFactory.loading;
+    	$scope.insertValue = watIsOurTeamNameFactory.insertValue;
     	$scope.item = {value:''};
+    	$scope.dbData = watIsOurTeamNameFactory.dbData;
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
-            title: "item 1",
+            title: "item 100000000000",
             details: "item 1 details",
             category: '1'
         }, {
