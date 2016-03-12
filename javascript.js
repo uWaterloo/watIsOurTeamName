@@ -1,40 +1,54 @@
 angular.module('portalApp')
 
 // Widget controller - runs every time widget is shown
-.controller('watIsOurTeamNameCtrl', ['$scope', '$http', '$q', 'watIsOurTeamNameFactory', function ($scope, $http, $q, watIsOurTeamNameFactory) {
+.controller('sampleFavouriteServiceCtrl', ['$scope', '$http', '$q', 'favouritesService', 'sampleFavouriteServiceFactory', function ($scope, $http, $q, favouritesService, sampleFavouriteServiceFactory) {
 
-    // Widget Configuration
-    $scope.portalHelpers.config = {
-        // make 'widgetMenu.html' the template for the top right menu
-        "widgetMenu": "widgetMenu.html"
-    };
-
-    // Import variables and functions from service
-    $scope.data = watIsOurTeamNameFactory.data;
+    // Make favourite service available from the scope so we can call service.toggle function from the view directly
+    $scope.favService = favouritesService;
+    $scope.data = {value:null};
 
     // initialize the service
-    watIsOurTeamNameFactory.init($scope);
+    sampleFavouriteServiceFactory.init($scope);
 
 	// Show main view in the first column
 	$scope.portalHelpers.showView('main.html', 1);
-	
+    
+    // Import variables and functions from service
+    $scope.data.value = sampleFavouriteServiceFactory.data;
+    
+    // This will cause the service to start pulling in favourites for this widget
+    // As well as configure the service to be specific to this widget
+    // the 'title' indicates the key for the value that will be saved
+    favouritesService.register('sampleFavouriteService', $scope.data, 'title');
+    // The sync function compares our supplied data to the database
+    // See the synced output for $$fav: true on saved entries.
+	favouritesService.sync().then(function () {
+        			console.log("Data synced:", $scope.data);
+                });
+    
+    // Handle click on the checkbox
+    $scope.toggleFav = function (val) {
+        // toggle(val) function will save or delete the entry from the database
+        $scope.favService.toggle(val);
+    }
 }])
 // Factory maintains the state of the widget
-.factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope, $filter, $q) {
+.factory('sampleFavouriteServiceFactory', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope, $filter, $q) {
 		
 	var initialized = {value: false};
 
-	// Your variable declarations
-	var data = {value: null};
+	// Sample data
+	var data = [
+        {title: "Apple", id: 1, rating: 5},
+        {title: "Pear", id: 2, rating: 1},
+        {title: "Peach", id: 3, rating: 3}
+        ];
 
 	var init = function ($scope) {
 		if (initialized.value)
 			return;
-		
+        
 		initialized.value = true;
-
-		// Place your init code here:
-		data.value={message:"Welcome to Waterloo's Classified Page"};
 	}
 
 
@@ -44,20 +58,4 @@ angular.module('portalApp')
 		data: data
 	};
 
-}])
-// Custom directive example
-.directive('watIsOurTeamNameDirectiveName', ['$http', function ($http) {
-	return {
-		link: function (scope, el, attrs) {
-
-		}
-	};
-}])
-// Custom filter example
-.filter('watIsOurTeamNameFilterName', function () {
-	return function (input, arg1, arg2) {
-		// Filter your output here by iterating over input elements
-		var output = input;
-		return output;
-	}
-});
+}]);
