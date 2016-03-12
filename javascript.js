@@ -11,15 +11,10 @@ angular.module('portalApp')
 
         // Import variables and functions from service
         $scope.loading = watIsOurTeamNameFactory.loading;
-        $scope.insertValue = watIsOurTeamNameFactory.insertValue;
+    	$scope.insertValue = watIsOurTeamNameFactory.insertValue;
         $scope.insertDescription = watIsOurTeamNameFactory.insertDescription;
-        $scope.insertContact = watIsOurTeamNameFactory.insertContact;
-        $scope.insertCategory = watIsOurTeamNameFactory.insertCategory;
-        $scope.insertStatus = watIsOurTeamNameFactory.insertStatus;
-        $scope.item = {
-            value: ''
-        };
-        $scope.dbData = watIsOurTeamNameFactory.dbData;
+    	$scope.item = {value:''};
+    	$scope.dbData = watIsOurTeamNameFactory.dbData;
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
@@ -85,50 +80,49 @@ angular.module('portalApp')
         }
 
         $scope.nextItem = function() {
-                var nextItem = $scope.portalHelpers.getNextListItem();
-                $scope.showDetails(nextItem);
-            }
-            // Post Ad stuff
+            var nextItem = $scope.portalHelpers.getNextListItem();
+            $scope.showDetails(nextItem);
+        }
+        // Post Ad stuff
         $scope.showPostAd = function(item) {
             // Set which item to show in the showAdDetails view
             $scope.item.value = item;
             $scope.item.description = item;
-            $scope.item.contact = item;
-            $scope.item.category = item;
-            $scope.item.status = item;
-
             // Show details view in the second column
             $scope.portalHelpers.showView('adDetails.html', 2);
         };
         //Create Table
-        $scope.createTable = function() {
-                $scope.portalHelpers.invokeServerFunction('createTable').then(function(
-                    result) {
-                    $scope.dbData.value = [];
-                    $scope.dbData.description = [];
-                    $scope.dbData.contact = [];
-                    $scope.dbData.category = [];
-                    $scope.dbData.status = [];
-                });
-            }
-            // Handle form submit in the database test example
-        $scope.insertData = function() {
-            //title
-            $scope.portalHelpers.invokeServerFunction('insert', {
-                value: $scope.insertValue.value,
-                description: $scope.insertDescription.description,
-                contact: $scope.insertContact.contact,
-                category: $scope.insertCategory.category,
-                status: $scope.insertStatus.status
-
-            }).then(function(result) {
-                $scope.dbData.value = result;
-                $scope.dbData.description = result;
-                $scope.dbData.contact = result;
-                $scope.dbData.category = result;
-                $scope.dbData.status = result;
+        $scope.createTable = function () {
+            $scope.portalHelpers.invokeServerFunction('createTable').then(function (
+                result) {
+                $scope.dbData.value = [];
+                $scope.dbData.description = [];                
             });
         }
+        // Handle form submit in the database test example
+        $scope.insertData = function () {
+            if ($scope.insertValue.value.length > 50)
+                alert('value should be less than 50 characters');
+            else {
+                $scope.portalHelpers.invokeServerFunction('insert', {
+                    value: $scope.insertValue.value
+                }).then(function (result) {
+                    $scope.dbData.value = result;
+                });
+                $scope.insertValue.value = "";
+            }
+            console.log($scope.insertDescription);
+            if ($scope.insertDescription.description.length > 500)
+                alert('description should be less than 500 characters');
+            else {
+                $scope.portalHelpers.invokeServerFunction('insert', {
+                    description: $scope.insertDescription.description
+                }).then(function (result) {
+                    $scope.dbData.description = result;
+                });
+                $scope.insertDescription.description = "";
+            }            
+        };        
     }])
     // Factory maintains the state of the widget
     .factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
@@ -151,19 +145,10 @@ angular.module('portalApp')
         };
         var insertValue = {
             value: null
-        };
+        };      
         var insertDescription = {
-            description: null
-        };
-        var insertContact = {
-            contact: null
-        };
-        var insertCategory= {
-            category: null
-        };
-        var insertStatus = {
-            status: null
-        };
+            value: null
+        };       
         var init = function($scope) {
             if (initialized.value)
                 return;
@@ -171,12 +156,9 @@ angular.module('portalApp')
             initialized.value = true;
 
             // Place your init code here:
-            $scope.portalHelpers.invokeServerFunction('getData').then(function(result) {
+            $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
                 dbData.value = result;
                 dbData.description = result;
-				dbData.contact = result;
-				dbData.category = result;
-				dbData.status = result;
             });
             data.value = {
                 message: "Welcome to Waterloo's Classified Page"
@@ -198,10 +180,7 @@ angular.module('portalApp')
             loading: loading,
             insertValue: insertValue,
             insertDescription: insertDescription,
-			insertContact: insertContact,
-			insertCategory: insertCategory,
-			insertStatus: insertStatus,
-            dbData: dbData
+            dbData: dbData            
         };
 
     }])
