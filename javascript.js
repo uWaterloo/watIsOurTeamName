@@ -160,7 +160,9 @@ angular.module('portalApp')
         return {
             init: init,
             data: data,
-            loading: loading
+            loading: loading,
+            insertValue: insertValue,
+            dbData: dbData            
         };
 
     }])
