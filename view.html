@@ -20,15 +20,15 @@
 
         <widget-search label="" placeholder="Search Classifieds" search-results-title="Search Results" data="model" min-char="2" fields="['title','details']">
             <widget-filter>
-                <widget-row
+                <widget-cell
                 fields="['category']" 
                 filters="[{value:'1',text:'For Sale'},{value:'2',text:'Tutoring'}, 
                     {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
-                </widget-row>
-                <widget-row
+                </widget-cell>
+                <widget-cell
                 fields="['status']"
                 filters="[{value:'1',text:'Buying'},{value:'0',text:'Selling'}]">
-                </widget-row>
+                </widget-cell>
 
             </widget-filter>
 
