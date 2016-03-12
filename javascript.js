@@ -100,13 +100,20 @@ angular.module('portalApp')
 
 		// Place your init code here:
 		data.value={message:"Welcome to Waterloo's Classified Page"};
+        sourceLoaded();
 	}
 
+    function sourceLoaded() {
+            sourcesLoaded++;
+            if (sourcesLoaded > 0)
+                loading.value = false;
+        }
 
 	// Expose init(), and variables
 	return {
 		init: init,
-		data: data
+		data: data,
+        loading: loading
 	};
 
 }])
