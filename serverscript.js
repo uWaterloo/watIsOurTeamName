@@ -26,10 +26,6 @@ function createTable() {
     return JSON.stringify(result);
 }
 
-//Delete table
-function deleteTable() {
-	db.Delete 
-
 // Insert into the database
 function insert() {
     if (args.Get("value").length > 50)
