@@ -11,37 +11,28 @@ angular.module('portalApp')
 
         // Import variables and functions from service
         $scope.loading = watIsOurTeamNameFactory.loading;
-    	$scope.insertValue = watIsOurTeamNameFactory.insertValue;
+        $scope.insertValue = watIsOurTeamNameFactory.insertValue;
         $scope.insertDescription = watIsOurTeamNameFactory.insertDescription;
-    	$scope.item = {value:''};
-    	$scope.dbData = watIsOurTeamNameFactory.dbData;
+        $scope.insertContact = watIsOurTeamNameFactory.insertContact;
+        $scope.insertCategory = watIsOurTeamNameFactory.insertCategory;
+        $scope.insertStatus = watIsOurTeamNameFactory.insertStatus;
+        $scope.item = {
+            value: ''
+        };
+        $scope.dbData = watIsOurTeamNameFactory.dbData;
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
-        $scope.model = [{
-            title: "item 1",
-            details: "item 1 details",
-            category: '1'
-        }, {
-            title: "item 2",
-            details: "item 2 details",
-            category: '2'
-        }, {
-            title: "item 3",
-            details: "item 3 details",
-            category: '1'
-        }, {
-            title: "item 4",
-            details: "item 4 details",
-            category: '2'
-        }, {
-            title: "item 5",
-            details: "item 5 details",
-            category: '1'
-        }, {
-            title: "item 6",
-            details: "item 6 details",
-            category: '2'
-        }];
+        $scope.append = function(){
+            // $scope.model.push({{item.value}});
+            
+        };
+    
+    	$scope.portalHelpers.invokeServerFunction('getData').then(
+    	function(result){
+    	$scope.model = result;
+            console.log(result);
+    	}
+    	);
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
@@ -80,49 +71,56 @@ angular.module('portalApp')
         }
 
         $scope.nextItem = function() {
-            var nextItem = $scope.portalHelpers.getNextListItem();
-            $scope.showDetails(nextItem);
-        }
-        // Post Ad stuff
+                var nextItem = $scope.portalHelpers.getNextListItem();
+                $scope.showDetails(nextItem);
+            }
+            // Post Ad stuff
         $scope.showPostAd = function(item) {
             // Set which item to show in the showAdDetails view
             $scope.item.value = item;
             $scope.item.description = item;
+            $scope.item.contact = item;
+            $scope.item.category = item;
+            $scope.item.status = item;
+
             // Show details view in the second column
             $scope.portalHelpers.showView('adDetails.html', 2);
         };
         //Create Table
-        $scope.createTable = function () {
-            $scope.portalHelpers.invokeServerFunction('createTable').then(function (
-                result) {
-                $scope.dbData.value = [];
-                $scope.dbData.description = [];                
+        $scope.createTable = function() {
+                $scope.portalHelpers.invokeServerFunction('createTable').then(function(
+                    result) {
+                    $scope.dbData.value = [];
+                    $scope.dbData.description = [];
+                    $scope.dbData.contact = [];
+                    $scope.dbData.category = [];
+                    $scope.dbData.status = [];
+                });
+            }
+            // Handle form submit in the database test example
+        $scope.insertData = function() {
+            //title
+            $scope.model.push({
+                value: $scope.insertValue.value,
+                description: $scope.insertDescription.description,
+                contact: $scope.insertContact.contact,
+                category: $scope.insertCategory.category,
+                status: $scope.insertStatus.status
+            });
+            $scope.portalHelpers.invokeServerFunction('insert', {
+                value: $scope.insertValue.value,
+                description: $scope.insertDescription.description,
+                contact: $scope.insertContact.contact,
+                category: $scope.insertCategory.category,
+                status: $scope.insertStatus.status
+            }).then(function(result) {
+                // $scope.dbData.value = result;
+                // $scope.dbData.description = result;
+                // $scope.dbData.contact = result;
+                // $scope.dbData.category = result;
+                // $scope.dbData.status = result;
             });
         }
-        // Handle form submit in the database test example
-        $scope.insertData = function () {
-            if ($scope.insertValue.value.length > 50)
-                alert('value should be less than 50 characters');
-            else {
-                $scope.portalHelpers.invokeServerFunction('insert', {
-                    value: $scope.insertValue.value
-                }).then(function (result) {
-                    $scope.dbData.value = result;
-                });
-                $scope.insertValue.value = "";
-            }
-            console.log($scope.insertDescription);
-            if ($scope.insertDescription.description.length > 500)
-                alert('description should be less than 500 characters');
-            else {
-                $scope.portalHelpers.invokeServerFunction('insert', {
-                    description: $scope.insertDescription.description
-                }).then(function (result) {
-                    $scope.dbData.description = result;
-                });
-                $scope.insertDescription.description = "";
-            }            
-        };        
     }])
     // Factory maintains the state of the widget
     .factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
@@ -145,10 +143,19 @@ angular.module('portalApp')
         };
         var insertValue = {
             value: null
-        };      
+        };
         var insertDescription = {
-            value: null
-        };       
+            description: null
+        };
+        var insertContact = {
+            contact: null
+        };
+        var insertCategory= {
+            category: null
+        };
+        var insertStatus = {
+            status: null
+        };
         var init = function($scope) {
             if (initialized.value)
                 return;
@@ -156,9 +163,12 @@ angular.module('portalApp')
             initialized.value = true;
 
             // Place your init code here:
-            $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
+            $scope.portalHelpers.invokeServerFunction('getData').then(function(result) {
                 dbData.value = result;
                 dbData.description = result;
+				dbData.contact = result;
+				dbData.category = result;
+				dbData.status = result;
             });
             data.value = {
                 message: "Welcome to Waterloo's Classified Page"
@@ -180,7 +190,10 @@ angular.module('portalApp')
             loading: loading,
             insertValue: insertValue,
             insertDescription: insertDescription,
-            dbData: dbData            
+			insertContact: insertContact,
+			insertCategory: insertCategory,
+			insertStatus: insertStatus,
+            dbData: dbData
         };
 
     }])
