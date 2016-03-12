@@ -15,7 +15,7 @@ angular.module('portalApp')
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
-            title: "item 1",
+            title: "Tutoring",
             details: "item 1 details",
             category: '1'
         }, {
