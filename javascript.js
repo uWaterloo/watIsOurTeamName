@@ -18,32 +18,39 @@ angular.module('portalApp')
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
-            title: "Magic",
+            title: "Fall 2016 Sublet",
             details: "I wil sell you magic",
+            price: "$200",
             category: '1'
         }, {
             title: "item 2",
             details: "item 2 details",
+             price: "$200",
             category: '2'
         }, {
             title: "item 3",
             details: "item 3 details",
+             price: "$200",
             category: '1'
         }, {
             title: "item 4",
             details: "item 4 details",
+             price: "$200",
             category: '2'
         }, {
             title: "item 5",
             details: "item 5 details",
+             price: "$200",
             category: '1'
         }, {
             title: "item 6",
             details: "item 6 details",
+             price: "$200",
             category: '2'},
            {
             title: "item 7",
             details: "item 7 details",
+                price: "$200",
             category: '3'
         } ];
 
