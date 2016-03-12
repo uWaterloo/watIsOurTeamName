@@ -125,7 +125,7 @@ angular.module('portalApp')
             //title
             $scope.portalHelpers.invokeServerFunction('insert', {
                 value: $scope.insertValue.value,
-                description: $scope.insert.description,
+                description: $scope.insertDescription.description,
                 contact: $scope.insertContact.contact,
                 forSale: $scope.insertForSale.forSale,
                 tutoring: $scope.insertTutoring.tutoring,
@@ -136,12 +136,12 @@ angular.module('portalApp')
             }).then(function(result) {
                 $scope.dbData.value = result;
                 $scope.dbData.description = result;
-                $scope.insertContact.contact = result;
-                $scope.insertForSale.forSale = result;
-                $scope.insertTutoring.tutoring = result;
-                $scope.insertHousing.housing = result;
-                $scope.insertLostFound.lostFound = result;
-                $scope.insertStatus.status = result;
+                $scope.dbData.contact = result;
+                $scope.dbData.forSale = result;
+                $scope.dbData.tutoring = result;
+                $scope.dbData.housing = result;
+                $scope.dbData.lostFound = result;
+                $scope.dbData.status = result;
             });
         }
     }])
