@@ -13,16 +13,26 @@
     <div class="collapseMe">
         <widget-row>
             <widget-cell>
-                <!--<h2>Classifieds</h2>-->
+                <h2>Classifieds</h2>
             </widget-cell>
         </widget-row>
        
         <div class="category"> 
             <widget-row> 
-                 <widget-filter 
-                    fields="['category']" 
-                    filters="[{value:'1',text:'Buy and Sell'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
-            </widget-filter>
+                <ul> 
+                    <li><a href=" ">Buy and Sell</a></li> 
+                    
+                    
+                    <li><a href=" ">Tutoring</a></li> 
+                    
+                    
+                     <li><a href=" ">Housing</a></li> 
+                    
+                     <li><a href=" ">Lost and Found</a></li> 
+                    
+                    
+                    
+                </ul>
                 
                 
             </widget-row>
@@ -57,7 +67,7 @@
                         <h2>List of Classifieds</h2>
                     </widget-cell>
                 </widget-row>
-                <widget-list list="item in model" show-items="3">
+                <widget-list list="item in model" show-items="4">
                     <widget-row clickable ng-click="showDetails(item)">
                         <widget-cell fill>{{item.title}}</widget-cell>
                         <widget-cell>
