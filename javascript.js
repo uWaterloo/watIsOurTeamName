@@ -44,15 +44,16 @@ angular.module('portalApp')
         }, {
             title: "Found Lost WatCard",
             details: "Found Lost Watcard. Name is John Smith.",
-             price: "FREE",
+            price: "FREE",
             category: '4',
             status: '1'
         }, {
             title: "Selling Size 10 Nike Shoes",
             details: "I am selling my Nike Shoes. Size 10.",
              price: "$20",
-            category: '1'},
+            category: '1',
             status: '1'
+        },
            {
             title: "Looking for Female Roommate for Winter 2015",
             details: "Looking for a Female roommate for Winter 2015",
@@ -61,7 +62,7 @@ angular.module('portalApp')
             status: '0'
         }
                        
-        ];
+                  ];
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
