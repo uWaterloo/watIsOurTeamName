@@ -34,4 +34,10 @@ function insert() {
         db.Execute('INSERT INTO sampleTable VALUES(@currentUser,@value)');
         return getData();
     }
-}
+    if (args.Get("description").length > 500)
+        return '{"result":"error"}';
+    else {
+        db.Execute('INSERT INTO sampleTable VALUES(@currentUser,@description)');
+        return getData();
+    }    
+} 
