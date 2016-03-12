@@ -133,6 +133,12 @@
                         <div class="input-group" style="width: 100%;">
                             <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter Title" />
                             <input type="text" class="form-control" ng-model="insertDescription.description" placeholder="Enter Description" />
+                            <input type="text" class="form-control" ng-model="insertContact.contact" placeholder="Enter Contact Info" />
+                            <input type="text" class="form-control" ng-model="insertForSale.forSale" placeholder="Enter 1 or 0" />
+                            <input type="text" class="form-control" ng-model="insertTutoring.tutoring" placeholder="Enter 1 or 0" />
+                            <input type="text" class="form-control" ng-model="insertHousing.housing" placeholder="Enter 1 or 0" />
+                            <input type="text" class="form-control" ng-model="insertLostFound.lostFound" placeholder="Enter 1 or 0" />
+                            <input type="text" class="form-control" ng-model="insertStatus.status" placeholder="Enter 1 or 0" />
             				<span class="input-group-btn" style="overflow:hidden;">
             				    <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit"></button>
             				</span>   
@@ -159,6 +165,12 @@
                     <div class="pDetails">UserId: {{item.userId}}</div>
                     <div class="pDetails">Value: {{item.value}}</div>
                     <div class="pDetails">Description: {{item.description}}</div>
+                    <div class="pDetails">Contact: {{item.contact}}</div>
+                    <div class="pDetails">ForSale: {{item.forSale}}</div>
+                    <div class="pDetails">Tutoring: {{item.tutoring}}</div>
+                    <div class="pDetails">Housing: {{item.housing}}</div>   
+                    <div class="pDetails">LostFound: {{item.lostFound}}</div>
+                    <div class="pDetails">Status: {{item.status}}</div>   
                 </widget-cell>
             </widget-row>
         </div>
