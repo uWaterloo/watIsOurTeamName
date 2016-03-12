@@ -22,31 +22,17 @@ angular.module('portalApp')
         $scope.dbData = watIsOurTeamNameFactory.dbData;
         // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
-        $scope.model = [{
-            title: "item 1",
-            details: "item 1 details",
-            category: '1'
-        }, {
-            title: "item 2",
-            details: "item 2 details",
-            category: '2'
-        }, {
-            title: "item 3",
-            details: "item 3 details",
-            category: '1'
-        }, {
-            title: "item 4",
-            details: "item 4 details",
-            category: '2'
-        }, {
-            title: "item 5",
-            details: "item 5 details",
-            category: '1'
-        }, {
-            title: "item 6",
-            details: "item 6 details",
-            category: '2'
-        }];
+        $scope.append = function(){
+            // $scope.model.push({{item.value}});
+            
+        };
+    
+    	$scope.portalHelpers.invokeServerFunction('getData').then(
+    	function(result){
+    	$scope.model = result;
+            console.log(result);
+    	}
+    	);
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
@@ -114,19 +100,25 @@ angular.module('portalApp')
             // Handle form submit in the database test example
         $scope.insertData = function() {
             //title
+            $scope.model.push({
+                value: $scope.insertValue.value,
+                description: $scope.insertDescription.description,
+                contact: $scope.insertContact.contact,
+                category: $scope.insertCategory.category,
+                status: $scope.insertStatus.status
+            });
             $scope.portalHelpers.invokeServerFunction('insert', {
                 value: $scope.insertValue.value,
                 description: $scope.insertDescription.description,
                 contact: $scope.insertContact.contact,
                 category: $scope.insertCategory.category,
                 status: $scope.insertStatus.status
-
             }).then(function(result) {
-                $scope.dbData.value = result;
-                $scope.dbData.description = result;
-                $scope.dbData.contact = result;
-                $scope.dbData.category = result;
-                $scope.dbData.status = result;
+                // $scope.dbData.value = result;
+                // $scope.dbData.description = result;
+                // $scope.dbData.contact = result;
+                // $scope.dbData.category = result;
+                // $scope.dbData.status = result;
             });
         }
     }])
