@@ -18,7 +18,7 @@ function createTable() {
     var row = JSON.parse(queryResult);
 
     if (row.length > 0 && typeof row[0].Error != 'undefined') {
-        db.Execute('CREATE TABLE sampleTable(id INTEGER PRIMARY KEY IDENTITY(1,1), userId nvarchar(50), value nvarchar(50), description nvarchar(500), contact nvarchar(200), forSale integer, tutoring integer, housing integer, lostFound integer, status);'); 
+        db.Execute('CREATE TABLE sampleTable(id INTEGER PRIMARY KEY IDENTITY(1,1), userId nvarchar(50), value nvarchar(50), description nvarchar(500), contact nvarchar(200), forSale integer, tutoring integer, housing integer, lostFound integer, status integer);'); 
         //status 1 = buy, 0 = sell;
         result = '{"status":"tableCreated"}';
     } else
