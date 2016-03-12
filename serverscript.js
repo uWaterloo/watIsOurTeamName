@@ -2,7 +2,7 @@
 
 // Retrieve data from the database
 function getData() {
-    var queryResult = db.Execute('SELECT * FROM sampleTable');
+    var queryResult = db.Execute('SELECT * FROM adTable');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -14,11 +14,11 @@ function getData() {
 function createTable() {
     var result = {};
 
-    var queryResult = db.Execute('SELECT TOP 1 * FROM sampleTable');
+    var queryResult = db.Execute('SELECT TOP 1 * FROM adTable');
     var row = JSON.parse(queryResult);
 
     if (row.length > 0 && typeof row[0].Error != 'undefined') {
-        db.Execute('CREATE TABLE sampleTable(id INTEGER PRIMARY KEY IDENTITY(1,1), userId nvarchar(50), value nvarchar(50), description nvarchar(500));');
+        db.Execute('CREATE TABLE adTable(id INTEGER PRIMARY KEY IDENTITY(1,1), userId nvarchar(50), value nvarchar(50), description nvarchar(500));');
         result = '{"status":"tableCreated"}';
     } else
         result = '{"status":"tableExist"}';
