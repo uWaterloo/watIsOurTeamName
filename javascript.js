@@ -40,8 +40,12 @@ angular.module('portalApp')
         }, {
             title: "item 6",
             details: "item 6 details",
-            category: '2'
-        }];
+            category: '2'},
+           {
+            title: "item 7",
+            details: "item 7 details",
+            category: '3'
+        } ];
 
         // initialize the service
         watIsOurTeamNameFactory.init($scope);
