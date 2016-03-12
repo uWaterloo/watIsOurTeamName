@@ -39,7 +39,7 @@ function insert() {
     if (args.Get("description").length > 500)
         return '{"result":"error"}';
     else {
-        db.Execute('INSERT INTO sampleTable VALUES(@currentUser,@description)');
+        db.Execute('INSERT INTO sampleTable (userId, description) VALUES(@currentUser,@description)');
         return getData();
     }    
 } 
