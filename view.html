@@ -19,10 +19,12 @@
        
         <div class="category"> 
             <widget-row> 
-                 <widget-filter 
-                    fields="['category']" 
-                    filters="[{value:'1',text:'Buy and Sell'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
-            </widget-filter>
+                <form>
+  					<input type="radio" name="category" value="1" checked> Buy and Sell<br>
+ 					<input type="radio" name="category" value="2"> Tutoring<br>
+  					<input type="radio" name="category" value="3"> Housing<br>
+                    <input type="radio" name="category" value = "4"> Lost and Found<br>
+				</form>
                 
                 
             </widget-row>
