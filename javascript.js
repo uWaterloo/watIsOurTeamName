@@ -225,12 +225,12 @@ angular.module('portalApp')
             loading: loading,
             insertValue: insertValue,
             insertDescription: insertDescription,
-			insertContact.contact: insertContact,
-			insertForSale.forSale: insertForSale,
-			insertTutoring.tutoring: insertTutoring,
-			insertHousing.housing: insertHousing,
-			insertLostFound.lostFound: insertLostFound,
-			insertStatus.status: insertStatus,
+			insertContact: insertContact,
+			insertForSale: insertForSale,
+			insertTutoring: insertTutoring,
+			insertHousing: insertHousing,
+			insertLostFound: insertLostFound,
+			insertStatus: insertStatus,
             dbData: dbData
         };
 
