@@ -31,19 +31,17 @@
             
         </div> 
         <widget-search 
-                       
-             <widget-filter 
-                    fields="['category']" 
-                    filters="[{value:'1',text:'Buy and Sell'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
-            </widget-filter>
-
              label="" 
              placeholder="Search Classifieds" 
              search-results-title="Search Results"
              data="model" 
              min-char="2" 
              fields="['title','details']">
-            
+            <widget-filter 
+                    fields="['category']" 
+                    filters="[{value:'1',text:'Buy and Sell'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
+            </widget-filter>
+
             <widget-searching>
                 <widget-list list="item in searchResults" show-items="3">
                     <widget-row clickable ng-click="showDetails(item)">
