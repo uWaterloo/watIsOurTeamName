@@ -84,6 +84,10 @@ angular.module('portalApp')
 .factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope, $filter, $q) {
 		
 	var initialized = {value: false};
+    // Your variable declarations
+        var loading = {
+            value: true
+        };
 
 	// Your variable declarations
 	var data = {value: null};
@@ -96,6 +100,7 @@ angular.module('portalApp')
 
 		// Place your init code here:
 		data.value={message:"Welcome to Waterloo's Classified Page"};
+        sourceLoaded();
 	}
 
 
