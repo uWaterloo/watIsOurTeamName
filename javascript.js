@@ -10,6 +10,7 @@ angular.module('portalApp')
         };
 
         // Import variables and functions from service
+        $scope.loading = watIsOurTeamNameFactory.loading;
         $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
