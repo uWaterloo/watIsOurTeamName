@@ -14,10 +14,7 @@ angular.module('portalApp')
         $scope.insertValue = watIsOurTeamNameFactory.insertValue;
         $scope.insertDescription = watIsOurTeamNameFactory.insertDescription;
         $scope.insertContact = watIsOurTeamNameFactory.insertContact;
-        $scope.insertForSale = watIsOurTeamNameFactory.insertForSale;
-        $scope.insertTutoring = watIsOurTeamNameFactory.insertTutoring;
-        $scope.insertHousing = watIsOurTeamNameFactory.insertHousing;
-        $scope.insertLostFound = watIsOurTeamNameFactory.insertLostFound;
+        $scope.insertCategory = watIsOurTeamNameFactory.insertCategory;
         $scope.insertStatus = watIsOurTeamNameFactory.insertStatus;
         $scope.item = {
             value: ''
@@ -97,10 +94,7 @@ angular.module('portalApp')
             $scope.item.value = item;
             $scope.item.description = item;
             $scope.item.contact = item;
-            $scope.item.forSale = item;
-            $scope.item.tutoring = item;
-            $scope.item.housing = item;
-            $scope.item.lostFound = item;
+            $scope.item.category = item;
             $scope.item.status = item;
 
             // Show details view in the second column
@@ -113,10 +107,7 @@ angular.module('portalApp')
                     $scope.dbData.value = [];
                     $scope.dbData.description = [];
                     $scope.dbData.contact = [];
-                    $scope.dbData.forSale = [];
-                    $scope.dbData.tutoring = [];
-                    $scope.dbData.housing = [];
-                    $scope.dbData.lostFound = [];
+                    $scope.dbData.category = [];
                     $scope.dbData.status = [];
                 });
             }
@@ -127,20 +118,14 @@ angular.module('portalApp')
                 value: $scope.insertValue.value,
                 description: $scope.insertDescription.description,
                 contact: $scope.insertContact.contact,
-                forSale: $scope.insertForSale.forSale,
-                tutoring: $scope.insertTutoring.tutoring,
-                housing: $scope.insertHousing.housing,
-                lostFound: $scope.insertLostFound.lostFound,
+                category: $scope.insertCategory.category,
                 status: $scope.insertStatus.status
 
             }).then(function(result) {
                 $scope.dbData.value = result;
                 $scope.dbData.description = result;
                 $scope.dbData.contact = result;
-                $scope.dbData.forSale = result;
-                $scope.dbData.tutoring = result;
-                $scope.dbData.housing = result;
-                $scope.dbData.lostFound = result;
+                $scope.dbData.category = result;
                 $scope.dbData.status = result;
             });
         }
@@ -173,17 +158,8 @@ angular.module('portalApp')
         var insertContact = {
             contact: null
         };
-        var insertForSale = {
-            forSale: null
-        };
-        var insertTutoring= {
-            tutoring: null
-        };
-        var insertHousing = {
-            housing: null
-        };
-        var insertLostFound = {
-            lostFound: null
+        var insertCategory= {
+            category: null
         };
         var insertStatus = {
             status: null
@@ -199,10 +175,7 @@ angular.module('portalApp')
                 dbData.value = result;
                 dbData.description = result;
 				dbData.contact = result;
-				dbData.forSale = result;
-				dbData.tutoring = result;
-				dbData.housing = result;
-				dbData.lostFound = result;
+				dbData.category = result;
 				dbData.status = result;
             });
             data.value = {
@@ -226,10 +199,7 @@ angular.module('portalApp')
             insertValue: insertValue,
             insertDescription: insertDescription,
 			insertContact: insertContact,
-			insertForSale: insertForSale,
-			insertTutoring: insertTutoring,
-			insertHousing: insertHousing,
-			insertLostFound: insertLostFound,
+			insertCategory: insertCategory,
 			insertStatus: insertStatus,
             dbData: dbData
         };
