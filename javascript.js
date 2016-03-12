@@ -1,7 +1,7 @@
 angular.module('portalApp')
 
-.controller('sampleSimpleListCtrl', ['$scope', '$http', '$q', 'sampleSimpleListFactory', function ($scope, $http, $q,
-sampleSimpleListFactory) {
+// Widget controller - runs every time widget is shown
+.controller('watIsOurTeamNameCtrl', ['$scope', '$http', '$q', 'watIsOurTeamNameFactory', function ($scope, $http, $q, watIsOurTeamNameFactory) {
 
     // Widget Configuration
     $scope.portalHelpers.config = {
@@ -10,102 +10,54 @@ sampleSimpleListFactory) {
     };
 
     // Import variables and functions from service
-    $scope.loading = sampleSimpleListFactory.loading;
-    $scope.item = {value:''};
-
-    // Model for the search and list example
-    $scope.model = [{
-        title: "item 1",
-        details: "item 1 details",
-        category: '1'
-    }, {
-        title: "item 2",
-        details: "item 2 details",
-        category: '2'
-    }, {
-        title: "item 3",
-        details: "item 3 details",
-        category: '1'
-    }, {
-        title: "item 4",
-        details: "item 4 details",
-        category: '2'
-    }, {
-        title: "item 5",
-        details: "item 5 details",
-        category: '1'
-    }, {
-        title: "item 6",
-        details: "item 6 details",
-        category: '2'
-    }];
+    $scope.data = watIsOurTeamNameFactory.data;
 
     // initialize the service
-    sampleSimpleListFactory.init($scope);
+    watIsOurTeamNameFactory.init($scope);
 
-    // watch for changes in the loading variable
-    $scope.$watch('loading.value', function () {
-        // if loading
-        if ($scope.loading.value) {
-            // show loading screen in the first column, and don't append it to browser history
-            $scope.portalHelpers.showView('loading.html', 1, false);
-            // show loading animation in place of menu button
-            $scope.portalHelpers.toggleLoading(true);
-        } else {
-            $scope.portalHelpers.showView('main.html', 1);
-            $scope.portalHelpers.toggleLoading(false);
-        }
-    });
+	// Show main view in the first column
+	$scope.portalHelpers.showView('main.html', 1);
+	
+}])
+// Factory maintains the state of the widget
+.factory('watIsOurTeamNameFactory', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope, $filter, $q) {
+		
+	var initialized = {value: false};
 
-    // Handle click on an item in the list and search example
-    $scope.showDetails = function (item) {
-        // Set which item to show in the details view
-        $scope.item.value = item;
-        // Show details view in the second column
-        $scope.portalHelpers.showView('details.html', 2);
-    };
+	// Your variable declarations
+	var data = {value: null};
 
-    // Handle "previous item" click from the details page
-    $scope.prevItem = function () {
-        // get previous items in the list
-        var prevItem = $scope.portalHelpers.getPrevListItem();
-        // refresh details view with the new item
-        $scope.showDetails(prevItem);
-    }
+	var init = function ($scope) {
+		if (initialized.value)
+			return;
+		
+		initialized.value = true;
 
-    $scope.nextItem = function () {
-        var nextItem = $scope.portalHelpers.getNextListItem();
-        $scope.showDetails(nextItem);
-    }
+		// Place your init code here:
+		data.value={message:"Welcome to Waterloo's Classified Page"};
+	}
+
+
+	// Expose init(), and variables
+	return {
+		init: init,
+		data: data
+	};
 
 }])
-    // Factory maintains the state of the widget
-    .factory('sampleSimpleListFactory', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope,
-        $filter, $q) {
-        var initialized = {
-            value: false
-        };
+// Custom directive example
+.directive('watIsOurTeamNameDirectiveName', ['$http', function ($http) {
+	return {
+		link: function (scope, el, attrs) {
 
-      
-        var sourcesLoaded = 0;
-
-        var init = function ($scope) {
-            if (initialized.value)
-                return;
-            initialized.value = true;
-            // Place your init code here:
-            sourceLoaded();
-        }
-
-        function sourceLoaded() {
-            sourcesLoaded++;
-            if (sourcesLoaded > 0)
-                loading.value = false;
-        }
-
-        return {
-            init: init,
-            loading: loading
-        };
-
-    }]);
+		}
+	};
+}])
+// Custom filter example
+.filter('watIsOurTeamNameFilterName', function () {
+	return function (input, arg1, arg2) {
+		// Filter your output here by iterating over input elements
+		var output = input;
+		return output;
+	}
+});
