@@ -77,14 +77,15 @@
                           next-text="Next Item"></widget-list-controls>
     <widget-row>
         <widget-cell>
-            <h2>{{item.value.title}}</h2>
+            <h2>{{item.value.value}}</h2>
+            <h4>{{item.value.description}}</h4>
         </widget-cell>
     </widget-row>
-    <widget-row>
+<!--     <widget-row>
         <widget-cell>
             <div class="pHighlight">{{item.value.details}}</div>
         </widget-cell>
-    </widget-row>
+    </widget-row> -->
 </script>
 
 <!-- Ad Details -->
@@ -92,59 +93,46 @@
  <div class="collapseMe">
         <widget-row>
             <widget-cell>
-                <h2>Database Test</h2>
+                <h2>Post Advertisement</h2>
             </widget-cell>
         </widget-row>
-        <div ng-if="dbData.value.status">
-            <widget-row>
-                <widget-cell>
-                    <div class="pDetails" ng-if="dbData.value.status=='noTable'">
-                        Table does not exist,
-                        <a ng-click="createTable()">create table</a>.
-                    </div>
-                </widget-cell>
-            </widget-row>
-        </div>
-        <div ng-if="!dbData.value.status">
-            <widget-row>
-                <widget-cell>
-                    <form class="form-inline" ng-submit="insertData()">
-                        <div class="input-group" style="width: 100%;">
-                            <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter Title" />
-                            <input type="text" class="form-control" ng-model="insertDescription.description" placeholder="Enter Description" />
-                            <input type="text" class="form-control" ng-model="insertContact.contact" placeholder="Enter Contact Info" />
-                            <input type="integer" class="form-control" ng-model="insertCategory.category" placeholder="1 to 4" />
-                            <input type="integer" class="form-control" ng-model="insertStatus.status" placeholder="Enter 1 or 0" />
-            				<span class="input-group-btn" style="overflow:hidden;">
-            				    <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit"></button>
-            				</span>   
-                        </div>
-                    </form>
-                </widget-cell>               
-            </widget-row>
-<!--             <widget-row>
-                <widget-cell>
-                    <form class="form-inline" ng-submit="insertData()">
-                        <div class="input-group" style="width: 100%;">
-                            <input type="text" class="form-control" ng-model="insertDescription.description" placeholder="Enter some text and submit" />
-                            <span class="input-group-btn" style="overflow:hidden;">
-                                <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
-                            </span>
-                        </div>
-                    </form>
-                </widget-cell>
-            </widget-row>             -->
-
-            <widget-row ng-repeat="item in dbData.value">
-                <widget-cell>
-                    <div class="pDetails">Id: {{item.id}}</div>
-                    <div class="pDetails">UserId: {{item.userId}}</div>
-                    <div class="pDetails">Value: {{item.value}}</div>
-                    <div class="pDetails">Description: {{item.description}}</div>
-                    <div class="pDetails">Category: {{item.category}}</div>
-                    <div class="pDetails">Status: {{item.status}}</div>   
-                </widget-cell>
-            </widget-row>
-        </div>
+     <widget-row>
+            <widget-cell>
+                Category:
+            </widget-cell>
+        </widget-row>
+         <div class="category"> 
+            <p><widget-row> 
+                <form name="categorySelected">
+  					<input type="radio" name="category" value="1" checked> For Sale<br>
+ 					<input type="radio" name="category" value="2"> Tutoring<br>
+  					<input type="radio" name="category" value="3"> Housing<br>
+                    <input type="radio" name="category" value = "4"> Lost and Found<br>
+                </form>
+                        </widget-row></p>
+        </div> 
+        <p>
+        <widget-row>
+            <widget-cell>
+               Description:
+            </widget-cell>
+        </widget-row>
+        <textarea cols="40" rows="8">
+		Enter text here...
+		</textarea>
+        <widget-row>
+        	<widget-cell>
+       			Contact Email:
+        	</widget-cell>
+        </widget-row>
+        <textarea cols="40" rows="1">
+		Enter contact email (optional)
+		</textarea>
+           <widget-row>  
+               	   <button 
+                       type="button">Submit
+                   </button>
+           </widget-row>
+        </p>
     </div> 
 </script>
