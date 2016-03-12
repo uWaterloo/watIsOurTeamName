@@ -11,9 +11,8 @@ angular.module('portalApp')
 
         // Import variables and functions from service
         $scope.loading = watIsOurTeamNameFactory.loading;
-        $scope.data = watIsOurTeamNameFactory.data;
-        $scope.item = {value:''};
-    
+    	$scope.item = {value:''};
+        // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
             title: "item 1",
@@ -45,7 +44,7 @@ angular.module('portalApp')
         watIsOurTeamNameFactory.init($scope);
 
         // Show main view in the first column
-        //$scope.portalHelpers.showView('main.html', 1);
+        $scope.portalHelpers.showView('main.html', 1);
 
         // watch for changes in the loading variable
         $scope.$watch('loading.value', function() {
