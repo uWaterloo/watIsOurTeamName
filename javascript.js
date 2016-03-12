@@ -11,9 +11,10 @@ angular.module('portalApp')
 
         // Import variables and functions from service
         $scope.loading = watIsOurTeamNameFactory.loading;
-        $scope.data = watIsOurTeamNameFactory.data;
-        $scope.item = {value:''};
-    
+    	$scope.insertValue = watIsOurTeamNameFactory.insertValue;
+    	$scope.item = {value:''};
+    	$scope.dbData = watIsOurTeamNameFactory.dbData;
+        // $scope.data = watIsOurTeamNameFactory.data;
         // Model for the search and list example
         $scope.model = [{
             title: "item 1",
@@ -45,7 +46,7 @@ angular.module('portalApp')
         watIsOurTeamNameFactory.init($scope);
 
         // Show main view in the first column
-        //$scope.portalHelpers.showView('main.html', 1);
+        $scope.portalHelpers.showView('main.html', 1);
 
         // watch for changes in the loading variable
         $scope.$watch('loading.value', function() {
@@ -81,6 +82,14 @@ angular.module('portalApp')
             var nextItem = $scope.portalHelpers.getNextListItem();
             $scope.showDetails(nextItem);
         }
+        // Post Ad stuff
+        $scope.showPostAd = function(item) {
+            // Set which item to show in the showAddetails view
+            $scope.item.value = item;
+            // Show details view in the second column
+            $scope.portalHelpers.showView('adDetails.html', 2);
+        };
+        
 
     }])
     // Factory maintains the state of the widget
