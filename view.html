@@ -19,11 +19,18 @@
 
 
         <widget-search label="" placeholder="Search Classifieds" search-results-title="Search Results" data="model" min-char="2" fields="['title','details']">
-            <widget-filter fields="['category']" filters="[{value:'1',text:'For Sale'},{value:'2',text:'Tutoring'}, 
-                    {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
+            <widget-filter 
+                    fields="['category']"
+                    filters="[{value:'1',text:'For Sale'},{value:'2',text:'Tutoring'}, 
+                    		{value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]"
+                    title = "Pick a category">
             </widget-filter>
-            <widget-filter fields="['status']" filters="[{value:'1',text:'Buying'},{value:'0',text:'Selling'}]">
+            <widget-filter 
+                           fields="['status']"
+                           filters="[{value:'1',text:'Looking for Something'},{value:'0',text:'Offering Something'}]"
+                           title = "Pick a type">
             </widget-filter>
+            
 
             <widget-searching>
                 <widget-list list="item in searchResults" show-items="3">
