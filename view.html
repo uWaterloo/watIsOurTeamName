@@ -2,7 +2,7 @@
     <widget-row>
         <widget-cell>
             <div class="pDetails">
-                Loading...
+                Loading..
             </div>
         </widget-cell>
     </widget-row>
@@ -16,7 +16,7 @@
                 
             </widget-cell>
         </widget-row>
-        
+      
         <widget-search 
              label="" 
              placeholder="Search Classifieds" 
@@ -24,20 +24,22 @@
              data="model" 
              min-char="2" 
              fields="['title','details']">
+           <!--<widget-filter 
+                    fields="['category']"
+                    filters="[{value:'1',text:'For Sale'},{value:'2',text:'Tutoring'}, 
+                    		{value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]"
+                    title = "Pick a category">
+            </widget-filter>-->
             <widget-filter 
-                    fields="['category']" 
-                    filters="[{value:'1',text:'For Sale'},{value:'2',text:'Tutoring'}, {value: '3', text: 'Housing'}, {value: '4', text: 'Lost and Found'}]">
-                
-         
-           
-                    
+                           fields="['status']"
+                           filters="[{value:'1',text:'Offering Something'},{value:'0',text:'Looking for Something'}]"
+                           title = "Pick a type">
             </widget-filter>
-            
 
             <widget-searching>
                 <widget-list list="item in searchResults" show-items="3">
                     <widget-row clickable ng-click="showDetails(item)">
-                        <widget-cell fill>{{item.title}}</widget-cell>
+                        <widget-cell fill>{{item.value}}</widget-cell>
                         <widget-cell>
                             <widget-icon name="angle-right"></widget-icon>
                         </widget-cell>
@@ -53,7 +55,7 @@
                 </widget-row>
                 <widget-list list="item in model" show-items="5">
                     <widget-row clickable ng-click="showDetails(item)">
-                        <widget-cell fill>{{item.title}}</widget-cell>
+                        <widget-cell fill>{{item.value}}</widget-cell>
                         <widget-cell>
                             <widget-icon name="angle-right"></widget-icon>
                         </widget-cell>
@@ -63,7 +65,7 @@
         </widget-search>
     </div>
 	 <widget-row clickable ng-click="showPostAd(item)"> 
-        <center> <button type="button">Post Ad</button> </center> 
+        <center> <button type="button" class="button">Post Ad</button> </center> 
      </widget-row>
 </script>
 
@@ -82,63 +84,62 @@
                           next-text="Next Item"></widget-list-controls>
     <widget-row>
         <widget-cell>
-            <h2>{{item.value.title}}</h2>
-            <h4>{{item.value.price}}</h4>
+            <h2>{{item.value.value}}</h2><br/>
+            <p>{{item.value.description}}</p>
         </widget-cell>
     </widget-row>
-    <widget-row>
+<!--     <widget-row>
         <widget-cell>
             <div class="pHighlight">{{item.value.details}}</div>
         </widget-cell>
-    </widget-row>
+    </widget-row> -->
 </script>
 
+
+
+
 <!-- Ad Details -->
-<script type="text/ng-template" id="adDetails.html">
+ <script type="text/ng-template" id="adDetails.html">
  <div class="collapseMe">
         <widget-row>
             <widget-cell>
-                <h2>Post Advertisement</h2>
+                <h2>Post Advertisements</h2>
             </widget-cell>
         </widget-row>
-     <p><div class="category"> 
-         <widget-row>
-            <widget-cell>
-                Category:
-            </widget-cell>
-    	 </widget-row>
-         
-                <form name="categorySelected">
-  					
-                    <input type="radio" name="category" value="1" checked> For Sale<br>
- 					<input type="radio" name="category" value="2"> Tutoring<br>
-  					<input type="radio" name="category" value="3"> Housing<br>
-                    <input type="radio" name="category" value = "4"> Lost and Found
-                    
-				</form> 
-                        </div>
-                        <widget-row></p>
-            <widget-cell>
-               Description:
-            </widget-cell>
-        </widget-row>
-                        <widget-row>
-        <textarea cols="40" rows="8">
-		Enter text here...
-		</textarea>
-                            </widget-row>
-       <p> <widget-row>
-        	<widget-cell>
-       			Contact Email:
-        	</widget-cell>
-        </widget-row>
-        <textarea cols="40" rows="1">
-		Enter contact email (optional)
-		</textarea>
-           <widget-row>  
-               	   <button 
-                       type="button">Submit
-                   </button>
+        <div ng-if="dbData.value.status">
+            <widget-row>
+                <widget-cell>
+                    <div class="pDetails" ng-if="dbData.value.status=='noTable'">
+                        Table does not exist,
+                        <a ng-click="createTable()">create table</a>.
+                    </div>
+                </widget-cell>
+            </widget-row>
+        </div>
+        <div ng-if="!dbData.value.status">
+            <widget-row>
+                <widget-cell>
+                    <form class="form-inline" ng-submit="insertData()">
+                        <div class="input-group" style="width: 100%;">
+                            <p><h5>Title</h5>
+                            <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter Title" /></p><br/><br/>
+                            <p><h5>Description</h5>
+                            <input type="text" class="form-control" ng-model="insertDescription.description" placeholder="Enter Description" /></p><br/><br/>
+                             <h5>Contact</h5>
+                            <input type="text" class="form-control" ng-model="insertContact.contact" placeholder="Enter Contact Info" /><br/><br/>
+                             <h5>Buyer or Seller?</h5>
+                            <input type="integer" class="form-control" ng-model="insertStatus.status" placeholder="Enter 1 or 0" /><br/><br/>
+            				<widget-row>
+                            <span class="input-group-btn" style="overflow:hidden;">
+            				    <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit"></button>
+            				</span> 
+                                </widget-row>
+                                 
            </widget-row>
-                        </div></p>
+                        </div>
+                    </form>
+                </widget-cell>               
+            </widget-row>
+        </div>
+    </div> 
 </script>
