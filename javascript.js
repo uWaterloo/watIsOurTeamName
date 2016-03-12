@@ -84,7 +84,7 @@ angular.module('portalApp')
         }
         // Post Ad stuff
         $scope.showPostAd = function(item) {
-            // Set which item to show in the showAdDetails view
+            // Set which item to show in the showAddetails view
             $scope.item.value = item;
             // Show details view in the second column
             $scope.portalHelpers.showView('adDetails.html', 2);
