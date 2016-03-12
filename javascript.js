@@ -140,6 +140,9 @@ angular.module('portalApp')
             initialized.value = true;
 
             // Place your init code here:
+            $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
+                dbData.value = result;
+            });
             data.value = {
                 message: "Welcome to Waterloo's Classified Page"
             };
